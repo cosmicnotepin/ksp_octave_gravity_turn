@@ -8,7 +8,7 @@ timerange = [0 4*5500];
   %r = R + 150000;
   %mu = G * M;
   %v = sqrt((mu/r));
-  init = [171.217 (pi/2 - 50*(pi)/180) 1750945.775 0];
+  init = [124 (pi/2 - 9*(pi)/180) 6372808.958 0];
 
 %options = odeset("InitialStep", 1e-3, "MaxStep", 1e-3);
 options = odeset('RelTol',1e-10,'AbsTol',1e-11*ones(1,4), 'MaxStep', 3, 'Events', @gravityTurnEvents);%, 'NormControl', 'on');
@@ -22,11 +22,11 @@ options = odeset('RelTol',1e-10,'AbsTol',1e-11*ones(1,4), 'MaxStep', 3, 'Events'
 
 %plot(polyRadiusRange, polyValues);
 %plot(y(:,3), polyValues);
-toKOSJson("r.json", y(:,3) - 1737100 );
+toKOSJson("r.json", y(:,3) - 6371000 );
 toKOSJson("a.json", y(:,2) * 180/pi );
-hold on;
+%hold on;
 
-plot(y(:,3), y(:,2));
+plot(y(:,3) - 6371000 , y(:,2));
 
 %pp = spline(y(:,3), y(:,2));
 %splineVals = ppval(pp, y(:,3));
