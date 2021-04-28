@@ -11,19 +11,9 @@ wait 6.
 stage.
 local firstStageStartTime to time:seconds.
 
-wait until velocity:surface:mag > 100.
-print "mu: " + body:mu.
-print "init vel: " + velocity:surface:mag.
-print "init r: " + (body:radius + altitude).
-print "init angle" + vang(ship:facing:forevector, vxcl(ship:up:forevector, ship:facing:forevector)).
-print "init mass: " + ship:mass.
-print "stage time used: " + (time:seconds - firstStageStartTime).
-list engines in e.
-print "mass flow: " + (e[0]:consumedresources:values[0]:massflow + e[0]:consumedresources:values[1]:massflow).
-print "thrust: " + maxthrust.
 unlock steering.
 local angle to 0.
-local vd to vecdraw({return ship:position.}, {return heading(90, angle):forevector * 20.}, red).
+local vd to vecdraw({return ship:position.}, {return heading(0, angle):forevector * 20.}, red).
 set vd:show to true.
 local vd2 to vecdraw({return ship:position.}, {return velocity:surface:normalized * 30.}, white).
 set vd2:show to true.
@@ -36,7 +26,7 @@ until maxthrust = 0 {
             break.
         }
     }
-    set steering to unrotate(heading(90, angle):forevector).
+    set steering to unrotate(heading(0, angle):forevector).
     wait 0.  
 }
 wait until maxthrust = 0.
@@ -49,16 +39,27 @@ stage.
 wait 5.
 stage.
 wait 5.
+stage.
+wait 5.
+print "free".
 
-warpWait(time:seconds + eta:apoapsis - 90 - 30).
+warpWait(time:seconds + eta:apoapsis - 105 - 30).
+print "90-30".
+lock throttle to 0.
 RCS on.
 lock steering to prograde.
 
-wait until eta:apoapsis < (90 - 1.2).
+wait until eta:apoapsis < (105 - 5).
+print "90-5".
+set ship:control:fore to 1.
+wait 3.
+print "3".
+lock throttle to 1.
 stage.
-wait 1.2.
-stage.
-wait until maxthrust = 0.
+print "stage".
+set ship:control:neutralize to true.
+wait until apoapsis > 700000.
+lock throttle to 0.
 
 print "apoapsis: " + (apoapsis + body:radius).
 print "periapsis: " + (periapsis + body:radius).
