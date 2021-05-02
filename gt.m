@@ -37,7 +37,7 @@ function res = gt(t,s)
   %second_burn_duration = 240;
 
   %second_burn_start = 2000 - second_burn_duration/2;
-  thrust = thrustVac - ((thrustVac-thrustASL) * (P/getPressureAtAltitude(-1)));
+  thrust = thrustVac - ((thrustVac-thrustASL) * (P/getPressureAtAltitude(-1))); % thrust "curve" from engine config GameData\RealismOverhaul\Engine_Configs\RD108_RD118_Config.cfg
   acceleration = (thrust-drag)/currMass;
   if (t > burn_time)
     acceleration = -drag/currMass;

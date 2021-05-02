@@ -1,0 +1,30 @@
+Stock chutes are unchanged in FAR for all atmospheres. Mainly due to the fact that I haven't worked out a good model for them. So use what the the KSP wiki tells you to use for chutes.
+
+As for anything else, here's what you need to know:
+
+Pressure curves for the planets are unchanged. Temperature curves are unchanged except for Jool (which is offset so that its lowest temperature is 25 K rather than below absolute zero; I don't know the exact offset).
+
+Atmospheric properties can be found in the config.xml; Body 1 is Kerbin, Body 5 is Eve, Body 6 is Duna, Body 8 is Jool and Body 9 is Laythe. You want gas molecular weight, which is in g/mol.
+
+Density is calculated from the ideal gas equation:
+
+? = PM / RT
+
+where:
+
+? is density in kg/m3
+P is pressure in kPa (multiply atmospheres by 101.3 kPa/atm)
+M is molecular weight in kg/mol
+R is the gas constant, 8.3145 J / mol*K
+T is temperature in K
+
+Then, drag is calculated as D = 0.5?V2 ACd
+
+where:
+
+? is density in kg/m3
+V is velocity in m/s
+A is reference area (get from Flight Data window)
+Cd is drag coefficient (get from Flight Data window)
+
+If you insist on trying to figure out A manually, just try to fit an elliptical base conical frustum around any non-wing part and use the surface area of that, not counting the ends; that's what FAR uses. If you want to figure out Cd manually, look up the USAF Stability and Control DATCOM and use the methods in Section 4.2 to calculate Cd.

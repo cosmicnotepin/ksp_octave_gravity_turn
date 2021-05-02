@@ -3,9 +3,9 @@ clear all
 
 thrustVac = 941.4;
 thrustSL = 741.1;
-burnTime = 170.81;
+burnTime = 170.40;
 mDot = 0.30507;
-m0 = 59.342;
+m0 = 60.003;
 A = 5.4;
 Cd = 0.05;
 Cdss = 0.75;
@@ -40,8 +40,8 @@ options = odeset('RelTol',1e-10,'AbsTol',1e-11*ones(1,4), 'MaxStep', 3, 'Events'
 
 %plot(polyRadiusRange, polyValues);
 %plot(y(:,3), polyValues);
-toKOSJson("r.json", y(:,3) - 6371000 );
-toKOSJson("a.json", y(:,2) * 180/pi );
+toKOSJson("C:/Users/dmad/ksp/RSS_RO_RP-1_KOS/Ships/Script/r.json", y(:,3) - 6371000 );
+toKOSJson("C:/Users/dmad/ksp/RSS_RO_RP-1_KOS/Ships/Script/a.json", y(:,2) * 180/pi );
 %hold on;
 
 plot(y(:,3) - 6371000 , y(:,2));
