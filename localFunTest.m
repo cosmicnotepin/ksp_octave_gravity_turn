@@ -1,4 +1,8 @@
 function eomFun = localFunTest(p1)
+    if (true) 
+        gah = 5;
+    endif
+    gah
   Radius = 6371000; %Earth Body:Radius
   mu = 398600441800000; % Earth GM
 
